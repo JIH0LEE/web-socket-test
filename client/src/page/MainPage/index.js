@@ -6,7 +6,6 @@ function MainPage() {
   const navigate = useNavigate();
 
   const makeChatRoom = () => {
-    console.log("test");
     axios.post("http://localhost:8080/api/chat").then((res) => {
       navigate(`/chat/${res.data.chatId}`);
     });

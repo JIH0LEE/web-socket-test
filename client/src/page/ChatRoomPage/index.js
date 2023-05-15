@@ -36,7 +36,6 @@ function ChatRoomPage() {
         };
         stompClient.subscribe(`/sub/chat/room/${chatId}`, (data) => {
           setChatList(JSON.parse(data.body).chatList);
-          console.log(JSON.parse(data.body).chatList);
         });
         stompClient.send("/pub/chat/enter", {}, JSON.stringify(info));
       },
