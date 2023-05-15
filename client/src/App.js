@@ -1,21 +1,17 @@
-import { useRef, useState, useEffect } from "react";
-import SockJS from "sockjs-client";
-import { Stomp } from "@stomp/stompjs";
+import { Routes, Route } from "react-router-dom";
+import MainPage from "./page/MainPage";
+import ChatRoomPage from "./page/ChatRoomPage";
 import "./App.css";
 
 function App() {
-  const client = useRef({});
-
-  let sockJS = new SockJS("http://localhost:8080/ws");
-  let stompClient = Stomp.over(sockJS);
-
-  useEffect(() => {
-    stompClient.connect({}, () => {
-      console.log("connected");
-    });
-  }, []);
-  useEffect(() => {}, []);
-  return <div className="App">Hello world</div>;
+  return (
+    <div className="App">
+      <Routes>
+        <Route path="/" element={<MainPage />} />
+        <Route exact path="/chat/:id" element={<ChatRoomPage />} />
+      </Routes>
+    </div>
+  );
 }
 
 export default App;
